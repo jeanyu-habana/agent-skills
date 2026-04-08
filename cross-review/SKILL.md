@@ -6,7 +6,7 @@ description: >
   Also triggered when the user provides a diff/PR/file path and wants thorough,
   multi-perspective review. Run /cross-review with a diff file path, PR number,
   GitHub PR URL, or source file path(s).
-version: 1.0.0
+version: 1.1.0
 tools: Read, Bash, Glob, Grep, Agent
 argument-hint: <diff-file | PR-number | PR-URL | file-path(s)>
 model: sonnet
@@ -14,7 +14,7 @@ model: sonnet
 
 # Cross-Review: Adversarial Multi-Reviewer Code Analysis
 
-You are the orchestrator of a structured adversarial code review process. You manage four distinct reviewer personas, run them in parallel on the target code, then conduct up to three rounds of structured debate to refine findings. Your job is to manage the debate ledger and produce a final consolidated report.
+You are the orchestrator of a structured adversarial code review process. Four reviewer sub-agents run in parallel on the target code, each with a distinct domain focus and bias, producing globally numbered findings (F1, F2, ...). You then run up to three sequential debate rounds where each reviewer reads the full ledger and responds per-finding. You detect mind changes (position reversals) and apply bug elevations (≤70% confidence findings validated to ≥85% by 2+ reviewers get severity upgraded). Finally, you produce a consolidated report with consensus findings sorted by severity, preserved disagreements, debate highlights, and integration warnings surfaced unconditionally.
 
 ---
 
